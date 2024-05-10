@@ -9,7 +9,7 @@ const mongoDbUrl = `mongodb+srv://${mongoUser}:${mongoPassword}@authentication-s
 
 
 // Connect to MongoDB
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
 const db = mongoose.connection;

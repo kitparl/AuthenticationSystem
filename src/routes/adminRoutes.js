@@ -1,8 +1,8 @@
 // routes/adminRoutes.js
 import express from 'express';
 const router = express.Router();
-import adminController from '../controllers/adminController';
-import authMiddleware from '../middleware/authMiddleware';
+import adminController from '../controllers/adminController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 
 // Admin routes (require admin role)
@@ -13,4 +13,4 @@ router.get('/profiles', adminController.getAllProfiles);
 router.get('/profiles/:userId', adminController.getProfileById);
 router.put('/profiles/:userId', adminController.updateProfile);
 
-module.exports = router;
+export default router;

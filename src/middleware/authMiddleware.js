@@ -1,7 +1,8 @@
 // middleware/authMiddleware.js
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import config from '../config/config.js';
+import User from '../models/User.js';
+
 
 const authenticate = (req, res, next) => {
   const token = req.header('Authorization');
@@ -33,4 +34,8 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-module.exports = { authenticate, isAdmin };
+// module.exports = { authenticate, isAdmin };
+export default {
+    authenticate,
+    isAdmin,
+  };

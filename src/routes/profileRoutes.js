@@ -1,8 +1,8 @@
 // routes/profileRoutes.js
 import express from 'express';
 const router = express.Router();
-import profileController from '../controllers/profileController';
-import authMiddleware from '../middleware/authMiddleware';
+import profileController from '../controllers/profileController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 // Public routes
 router.get('/public', profileController.getPublicProfiles);
@@ -13,4 +13,4 @@ router.use(authMiddleware.authenticate);
 router.put('/:userId', profileController.updateProfile);
 router.put('/:userId/privacy', profileController.setProfilePrivacy);
 
-module.exports = router;
+export default router;
