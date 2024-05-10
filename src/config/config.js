@@ -20,3 +20,5 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
     // Your database operations here
 });
+
+export default db;
