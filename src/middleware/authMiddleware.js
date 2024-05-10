@@ -1,6 +1,6 @@
 // middleware/authMiddleware.js
 import jwt from 'jsonwebtoken';
-import config from '../config/config.js';
+// import config from '../config/config.js';
 import User from '../models/User.js';
 
 
@@ -12,8 +12,8 @@ const authenticate = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, config.jwtSecret);
-    req.user = decoded.user;
+    // const decoded = jwt.verify(token, config.jwtSecret);
+    // req.user = decoded.user;
     next();
   } catch (err) {
     return res.status(401).json({ message: 'Invalid token' });
