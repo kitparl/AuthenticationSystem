@@ -1,0 +1,144 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: NodeJS-Express API
+  description: Node.js Express API for profile management
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api/admin/profiles:
+    get:
+      tags:
+      - Profiles
+      summary: Get all profiles (admin)
+      operationId: getAllProfiles
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+    post:
+      tags:
+      - Profiles
+      summary: Create or update profile
+      operationId: createOrUpdateProfile
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/admin/profiles/{userId}:
+    get:
+      tags:
+      - Profiles
+      summary: Get profile by ID (admin)
+      operationId: getProfileById
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+    put:
+      tags:
+      - Profiles
+      summary: Update profile by ID (admin)
+      operationId: updateProfile
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/auth/register:
+    post:
+      tags:
+      - Authentication
+      summary: Register new user
+      operationId: register
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: User login
+      operationId: login
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/auth/logout:
+    post:
+      tags:
+      - Authentication
+      summary: User logout
+      operationId: logout
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/profiles/public:
+    get:
+      tags:
+      - Profiles
+      summary: Get public profiles
+      operationId: getPublicProfiles
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/profiles/{name}:
+    get:
+      tags:
+      - Profiles
+      summary: Get profile by name
+      operationId: getProfileByName
+      parameters:
+      - name: name
+        in: path
+        required: true
+        type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /api/profiles/privacy:
+    put:
+      tags:
+      - Profiles
+      summary: Set profile privacy
+      operationId: setProfilePrivacy
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Successful operation
+
+securityDefinitions:
+  jwtAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: JWT Bearer Token Authentication
