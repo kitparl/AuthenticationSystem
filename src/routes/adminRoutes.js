@@ -9,8 +9,8 @@ import authMiddleware from '../middleware/authMiddleware.js';
 router.use(authMiddleware.authenticate);
 router.use(authMiddleware.isAdmin);
 
-router.get('/profiles',authMiddleware.jwtAuthMiddleware, authMiddleware.isAdmin, adminController.getAllProfiles);
-router.get('/profiles/:userId',authMiddleware.jwtAuthMiddleware, authMiddleware.isAdmin, adminController.getProfileById);
-router.put('/profiles/:userId',authMiddleware.jwtAuthMiddleware, authMiddleware.isAdmin, adminController.updateProfile);
+router.get('/profiles',authMiddleware.authenticate, authMiddleware.isAdmin, adminController.getAllProfiles);
+router.get('/profiles/:userId',authMiddleware.authenticate, authMiddleware.isAdmin, adminController.getProfileById);
+router.put('/profiles/:userId',authMiddleware.authenticate, authMiddleware.isAdmin, adminController.updateProfile);
 
 export default router;

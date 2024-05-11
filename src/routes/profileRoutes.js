@@ -13,6 +13,6 @@ router.get('/:name',authMiddleware.authenticate, profileController.getProfileByN
 
 // Authenticated routes (require authentication)
 router.use(authMiddleware.authenticate);
-router.put('/privacy', profileController.setProfilePrivacy);
+router.put('/privacy',authMiddleware.authenticate, profileController.setProfilePrivacy);
 
 export default router;

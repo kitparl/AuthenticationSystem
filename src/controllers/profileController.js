@@ -25,11 +25,21 @@ const profileController = {
   
       if (profile) {
         // Profile exists, update it
-        profile.name = name;
-        profile.bio = bio;
-        profile.photoUrl = photoUrl;
-        profile.phone = phone;
-        profile.isPublic = isPublic;
+        if(req.body.name){
+          profile.name = req.body.name;
+        }
+        if(req.body.bio){
+          profile.bio = req.body.bio;
+        }
+        if(req.body.photo){
+          profile.photoUrl = req.body.photoUrl;
+        }
+        if(req.body.phone){
+          profile.phone = req.body.phone;
+        }
+        if(req.body.isPublic){
+          profile.isPublic = req.body.isPublic;
+        }
         await profile.save();
         return res.status(200).json({ message: 'Profile updated successfully', profile });
       } else {

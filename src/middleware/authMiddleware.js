@@ -35,7 +35,9 @@ const authenticate = async (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  const { username } = req.body;
+
+  const username = req.user.username;
+  console.log("req.user.username", req.user.username);
 
   try {
     const user = await User.findOne({ username }); // Assuming username is unique
