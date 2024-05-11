@@ -52,12 +52,6 @@ const authController = {
     }
     },
   
-    // POST /auth/social-login
-    socialLogin: (req, res) => {
-      // Logic to handle social login
-      res.status(200).json({ message: 'Social login successful' });
-    },
-  
     // POST /auth/logout
     logout: async (req, res) => {
       // Logic to handle user logout

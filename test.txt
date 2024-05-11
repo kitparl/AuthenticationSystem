@@ -22,3 +22,7 @@ http://localhost:3001/api/auth/login
 // userId for profile search admin
 663f11c7541cf658bbdef6c4
 663f406649a532d9306e61a5
+
+
+# npm install dotenv @std/esm
+

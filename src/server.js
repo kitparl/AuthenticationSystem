@@ -1,9 +1,9 @@
 import app from "./app.js";
-import dotenv from 'dotenv';
-import db from './config/config.js';
+import db from './config/db.js';
+import passport from 'passport';
+import passportConfig from './config/passport.js';
 
-dotenv.config(); // This loads environment variables from a `.env` file
-// starting the server
+passportConfig(passport);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   db();

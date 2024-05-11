@@ -1,6 +1,5 @@
 // middleware/authMiddleware.js
 import jwt from 'jsonwebtoken';
-// import config from '../config/config.js';
 import User from '../models/User.js';
 import BlackListedToken from "../models/BlackListedToken.js"
 import bcrypt from 'bcryptjs';

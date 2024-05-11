@@ -8,6 +8,10 @@ const profileSchema = new mongoose.Schema({
   photoUrl: { type: String },
   phone: { type: String },
   isPublic: { type: Boolean, default: true }, // Public or private profile
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Profile = mongoose.model('Profile', profileSchema);
