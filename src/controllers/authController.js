@@ -31,7 +31,7 @@ const authController = {
         });
         await newUser.save();
 
-        return apiResponseHandler(res, 201, 'User created successfully');
+        return apiResponseHandler(res, 201, 'User created successfully', newUser);
     } catch (error) {
         console.error(error);
         return apiResponseHandler(res, 500, 'Internal server error');
@@ -40,7 +40,7 @@ const authController = {
     },
   
     // POST /auth/login
-    login: (req, res) => {
+    login: async (req, res) => {
       const { token } = req;
       console.log("token", token);
       try{

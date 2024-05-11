@@ -6,7 +6,7 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 
 router.post('/register', authController.register);
-router.post('/login',authMiddleware.jwtAuthMiddleware, authMiddleware.isAdmin, authController.login);
+router.post('/login',authMiddleware.jwtAuthMiddleware, authController.login);
 router.post('/social-login', authController.socialLogin);
 router.post('/logout', authController.logout);
 

@@ -55,8 +55,7 @@ const profileController = {
     getPublicProfiles : async (req, res) => {
       try {
         // Fetch public profiles from the database
-        const publicProfiles = await Profile.find({ isPublic: true }).select('-__v'); // Exclude MongoDB's internal version field
-    
+        const publicProfiles = await Profile.find({ isPublic: true }).select('-__v');
         res.status(200).json({ profiles: publicProfiles });
       } catch (err) {
         console.error('Error fetching public profiles:', err);

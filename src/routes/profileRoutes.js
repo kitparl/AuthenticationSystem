@@ -8,8 +8,8 @@ import authMiddleware from '../middleware/authMiddleware.js';
 router.post('/create-or-update', authMiddleware.authenticate, profileController.createOrUpdateProfile);
 
 // Public routes
-router.get('/public', profileController.getPublicProfiles);
-router.get('/:userId', profileController.getProfileById);
+router.get('/public',authMiddleware.authenticate, profileController.getPublicProfiles);
+router.get('/:userId',authMiddleware.authenticate, profileController.getProfileById);
 
 // Authenticated routes (require authentication)
 router.use(authMiddleware.authenticate);

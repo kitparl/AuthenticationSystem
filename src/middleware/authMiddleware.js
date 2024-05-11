@@ -23,18 +23,26 @@ const authenticate = (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
+  const { username } = req.body;
+
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findOne({ username }); // Assuming username is unique
+    console.log(
+      "usererere", user
+    );
 
     if (!user || user.role !== 'admin') {
+      console.log("User is not an admin");
       return res.status(403).json({ message: 'Admin access required' });
     }
 
     next();
   } catch (err) {
+    console.error("Error in isAdmin middleware:", err);
     return res.status(500).json({ message: 'Server Error' });
   }
 };
+
 
 const generateApiKey = () => {
   return crypto.randomBytes(20).toString('hex'); // Generate a random API key
@@ -42,12 +50,19 @@ const generateApiKey = () => {
 
 
 const jwtAuthMiddleware = async (req, res, next) => {
+  console.log(1);
   const { username, password } = req.body;
+  console.log(1);
 
   try {
+  console.log(1);
+
     const user = await User.findOne({ username }); // Assuming username is unique
+    console.log(1, user);
 
     if (user) {
+  console.log(1);
+
       // Compare hashed password
       const match = await bcrypt.compare(password, user.password);
       if (match) {
@@ -62,7 +77,10 @@ const jwtAuthMiddleware = async (req, res, next) => {
         // Set response headers
         res.set('X-API-Key', apiKey);
         res.set('Authorization', `Bearer ${token}`);
+        console.log("res ---------_>", res);
+
         req.token = token;
+        console.log("req.token", req.token);
 
         return next();
       }

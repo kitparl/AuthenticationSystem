@@ -1,4 +1,5 @@
 // register user
+http://localhost:3001/api/auth/login
 {
   "username": "pranshu.bisht",
   "password": "pranshu.bisht",
