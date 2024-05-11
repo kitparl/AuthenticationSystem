@@ -5,8 +5,17 @@ import authRoutes from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import passport from "passport";
+import session from "express-session";
 
 const app = express();
+
+// Add express-session middleware
+app.use(session({
+    secret: 'sdfsdvadasadai232rasd',
+    resave: false,
+    saveUninitialized: false
+  }));
+  
 app.use(morgan("dev")); 
 app.use(express.json()); // Parse JSON bodies
 app.use(cors()); // Use cors middleware to handle CORS issues

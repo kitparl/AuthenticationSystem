@@ -4,6 +4,9 @@ const router = express.Router();
 import profileController from '../controllers/profileController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
 
+// Route for creating or updating profiles after login
+router.post('/create-or-update', authMiddleware.authenticate, profileController.createOrUpdateProfile);
+
 // Public routes
 router.get('/public', profileController.getPublicProfiles);
 router.get('/:userId', profileController.getProfileById);

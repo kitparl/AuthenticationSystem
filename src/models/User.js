@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   socialId: { type: String },
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
+  apiKey: {type: String}
 });
 
 const User = mongoose.model('User', userSchema);

@@ -1,0 +1,19 @@
+// register user
+{
+  "username": "pranshu.bisht",
+  "password": "pranshu.bisht",
+  "email": "pranshubisht9@gmail.com",
+  "socialId": "facebook",
+  "role": "admin"
+}
+
+
+
+//// create profle
+{
+  "name": "John Doe",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "photoUrl": "https://example.com/photo.jpg",
+  "phone": "123-456-7890",
+  "isPublic": true
+}
