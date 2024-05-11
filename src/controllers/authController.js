@@ -4,6 +4,7 @@ const authController = {
     register: (req, res) => {
       // Logic to handle user registration
       res.status(200).json({ message: 'User registration successful' });
+      
     },
   
     // POST /auth/login
