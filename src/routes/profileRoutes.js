@@ -9,11 +9,10 @@ router.post('/create-or-update', authMiddleware.authenticate, profileController.
 
 // Public routes
 router.get('/public',authMiddleware.authenticate, profileController.getPublicProfiles);
-router.get('/:userId',authMiddleware.authenticate, profileController.getProfileById);
+router.get('/:name',authMiddleware.authenticate, profileController.getProfileByName);
 
 // Authenticated routes (require authentication)
 router.use(authMiddleware.authenticate);
-router.put('/:userId', profileController.updateProfile);
-router.put('/:userId/privacy', profileController.setProfilePrivacy);
+router.put('/privacy', profileController.setProfilePrivacy);
 
 export default router;
