@@ -2,16 +2,28 @@
 import jwt from 'jsonwebtoken';
 // import config from '../config/config.js';
 import User from '../models/User.js';
+import BlackListedToken from "../models/BlackListedToken.js"
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto'
 
 
-const authenticate = (req, res, next) => {
+const authenticate = async (req, res, next) => {
   const token = req.header('Authorization');
 
   if (!token) {
     return res.status(401).json({ message: 'Authorization token is missing' });
   }
+
+    // Check if the token is blacklisted
+    try {
+      const isTokenBlacklisted = await BlackListedToken.exists({ token: token.replace('Bearer ', '') });
+      if (isTokenBlacklisted) {
+        return res.status(401).json({ message: 'Token is expired/blacklisted' });
+      }
+    } catch (err) {
+      console.error('Error checking blacklisted token:', err);
+      return res.status(500).json({ message: 'Server Error' });
+    }
 
   try {
     const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET_KEY);

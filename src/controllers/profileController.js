@@ -85,6 +85,10 @@ const profileController = {
   
     // PUT /profiles/:userId/privacy
     setProfilePrivacy: async (req, res) => {
+    
+      if(!req.body.hasOwnProperty('isPublic')){
+        return res.status(404).json({ error: 'Privacy setting is undefined in body' });
+    }
     const username = req.user.username; // Assuming you have the authenticated user's username in the request
     try {
       // Find the user by username
@@ -99,7 +103,7 @@ const profileController = {
       let profile = await Profile.findOne({ user: user._id });
   
       if (profile) {
-        profile.isPublic = isPublic;
+        profile.isPublic = req.body.isPublic;
         await profile.save();
         return res.status(200).json({ message: 'Profile updated successfully', profile });
       } else {

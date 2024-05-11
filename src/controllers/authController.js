@@ -3,6 +3,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import apiResponseHandler from "../utils/responseHandler.js"
+import BlackListedToken from "../models/BlackListedToken.js"
 
 
 
@@ -58,11 +59,32 @@ const authController = {
     },
   
     // POST /auth/logout
-    logout: (req, res) => {
+    logout: async (req, res) => {
       // Logic to handle user logout
-      res.status(200).json({ message: 'User logout successful' });
-    }
-  };
+      const token = req.header('Authorization');
+
+      if (!token) {
+        return res.status(401).json({ message: 'Authorization token is missing' });
+      }
+    
+      try {
+        // Check if the token is already blacklisted
+        const isTokenBlacklisted = await BlackListedToken.exists({ token: token.replace('Bearer ', '') });
+        if (isTokenBlacklisted) {
+          return res.status(200).json({ message: 'User logout successful' });
+        }
+      
+        // Add the token to the blacklist
+        const blackListedToken = new BlackListedToken({ token: token.replace('Bearer ', '') });
+        await blackListedToken.save();
+      
+        res.status(200).json({ message: 'User logout successful' });
+      } catch (err) {
+        console.error('Error logging out and blacklisting token:', err);
+        res.status(500).json({ message: 'Server Error' });
+      }
+        }
+      };
   
   export default authController;
   
