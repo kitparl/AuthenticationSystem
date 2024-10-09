@@ -2,7 +2,7 @@
 
 The task involves enhancing the existing or creating a new backend API for an authentication system using Node.js. This system should enable users to register, log in, log in/register via services like Google, Facebook, Twitter, or GitHub, sign out, view/edit profile details including photo, name, bio, phone, email, and password, upload a photo or provide an image URL, and set their profile as public or private. Admin users should have access to both public and private profiles, while normal users can only view public profiles.
 
-This project is part of a self-learning initiative aimed at enhancing my skills more over jwt based auth.
+This project is part of a ***self-learning initiative*** aimed at enhancing my skills more over ***jwt based auth***.
 
 
 # Sample Work
